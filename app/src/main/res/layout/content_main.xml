@@ -145,7 +145,7 @@
         app:layout_constraintEnd_toStartOf="@+id/submitButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="457dp" />
+        tools:layout_editor_absoluteY="533dp" />
 
     <Button
         android:id="@+id/submitButton"
@@ -155,7 +155,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/turnOffButton"
-        tools:layout_editor_absoluteY="457dp" />
+        tools:layout_editor_absoluteY="533dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -170,16 +170,16 @@
         android:layout_height="54dp"
         android:text="Select Animation"
         app:layout_constraintBottom_toTopOf="@+id/selectedAnimationTextView"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar4"
-        tools:layout_editor_absoluteX="94dp" />
+        app:layout_constraintTop_toBottomOf="@+id/directionSwitch"
+        tools:layout_editor_absoluteX="89dp" />
 
     <Button
         android:id="@+id/connectBluetoothButton"
         android:layout_width="233dp"
         android:layout_height="54dp"
         android:text="Connect To Bluetooth"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="527dp" />
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="605dp" />
 
     <TextView
         android:id="@+id/selectedAnimationTextView"
@@ -187,5 +187,17 @@
         android:layout_height="27dp"
         app:layout_constraintBottom_toTopOf="@+id/turnOffButton"
         app:layout_constraintTop_toBottomOf="@+id/selectAnimationButton"
-        tools:layout_editor_absoluteX="109dp" />
+        tools:layout_editor_absoluteX="103dp" />
+
+    <Switch
+        android:id="@+id/directionSwitch"
+        android:layout_width="165dp"
+        android:layout_height="24dp"
+        android:checked="true"
+        android:text="Forward"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/selectAnimationButton"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar4"
+        tools:layout_editor_absoluteX="117dp" />
 </android.support.constraint.ConstraintLayout>
