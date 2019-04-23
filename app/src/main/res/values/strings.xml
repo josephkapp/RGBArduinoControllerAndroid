@@ -2,4 +2,11 @@
     <string name="app_name">RGB Arduino Controller Android</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_animation_selection">AnimationSelection</string>
+    <string name="static_color">Static Color</string>
+    <string name="fade_color">Fade Color</string>
+    <string name="rainbow_cycle">Rainbow Cycle</string>
+    <string name="rainbow_chase">Rainbow Chase</string>
+    <string name="random_color_chase">Random Color Chase</string>
+    <string name="theater_chase">Theater Chase</string>
+    <string name="aurora_glow">Aurora Glow</string>
 </resources>

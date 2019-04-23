@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +17,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        PaintSeekBar seekBar = (PaintSeekBar) findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+
     }
 
     @Override
@@ -42,6 +60,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSelectAnimationButtonPress(View view)
     {
-        startActivity(new Intent(MainActivity.this, AnimationSelection.class));
+        Intent i = new Intent(this, AnimationSelection.class);
+        startActivityForResult(i,1);
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                String selAnimation = data.getStringExtra("selectedAnimation");
+            }
+        }
     }
 }
