@@ -62,9 +62,14 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent i = new Intent(this, AnimationSelection.class);
         startActivityForResult(i,1);
-
-
     }
+
+    public void onConnectToBluetoothButtonPress(View view)
+    {
+        Intent i = new Intent(this, ConnectBluetooth.class);
+        startActivityForResult(i,1);
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){

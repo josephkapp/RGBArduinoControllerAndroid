@@ -9,4 +9,5 @@
     <string name="random_color_chase">Random Color Chase</string>
     <string name="theater_chase">Theater Chase</string>
     <string name="aurora_glow">Aurora Glow</string>
+    <string name="title_activity_connect_bluetooth">ConnectBluetooth</string>
 </resources>
