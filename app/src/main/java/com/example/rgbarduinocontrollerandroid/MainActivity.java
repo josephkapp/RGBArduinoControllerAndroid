@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     public void onConnectToBluetoothButtonPress(View view)
     {
         Intent i = new Intent(this, ConnectBluetooth.class);
-        startActivityForResult(i,1);
+        startActivityForResult(i,2);
     }
 
 
@@ -77,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
                 String selAnimation = data.getStringExtra("selectedAnimation");
+            }
+        } else if (requestCode == 2)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                String result = data.getStringExtra("selectedBluetoothDeviceAddress");
+                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
             }
         }
     }
