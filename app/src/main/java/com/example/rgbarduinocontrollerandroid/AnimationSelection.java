@@ -39,14 +39,67 @@ public class AnimationSelection extends AppCompatActivity {
 
     public void onRadioButtonClicked(View view) {
 
-        radioAnimationGroup = findViewById(R.id.radioGroup);
-        int selectedButtonID = radioAnimationGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(selectedButtonID);
+        boolean checked = ((RadioButton) view).isChecked();
+        String buttonText = "Off";
+        int selAnimationVal = 0;
+
+        switch(view.getId()) {
+            case R.id.staticColorRadioButton:
+                if (checked)
+                {
+                    buttonText = (String) ((RadioButton) view).getText();
+                    selAnimationVal = 0;
+                }
+                    break;
+            case R.id.fadeColorRadioButton:
+                if (checked)
+                {
+                    buttonText = (String) ((RadioButton) view).getText();
+                    selAnimationVal = 1;
+                }
+                    break;
+            case R.id.rainbowCycleRadioButton:
+                if (checked)
+                {
+                    buttonText = (String) ((RadioButton) view).getText();
+                    selAnimationVal = 2;
+                }
+                break;
+            case R.id.rainbowChaseRadioButton:
+                if (checked)
+                {
+                    buttonText = (String) ((RadioButton) view).getText();
+                    selAnimationVal = 3;
+                }
+                break;
+            case R.id.theaterChaseRadioButton:
+                if (checked)
+                {
+                    buttonText = (String) ((RadioButton) view).getText();
+                    selAnimationVal = 4;
+                }
+                break;
+            case R.id.randomColorChaseRadioButton:
+                if (checked)
+                {
+                    buttonText = (String) ((RadioButton) view).getText();
+                    selAnimationVal = 5;
+                }
+                break;
+            case R.id.auroraGlowRadioButton:
+                if (checked)
+                {
+                    buttonText = (String) ((RadioButton) view).getText();
+                    selAnimationVal = 6;
+                }
+                break;
+        }
 
 
 
         Intent intent = new Intent();
-        intent.putExtra("selectedAnimation", radioButton.getText());
+        intent.putExtra("selectedAnimationText", buttonText);
+        intent.putExtra("selectedAnimationVal", selAnimationVal);
         setResult(RESULT_OK, intent);
         finish();
     }

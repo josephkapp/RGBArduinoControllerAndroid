@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.rgbarduinocontrollerandroid"
-        minSdkVersion 24
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -17,6 +17,11 @@ android {
         }
     }
 }
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -26,4 +31,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.github.RobotPajamas:Blueteeth:0.2.0'
+    implementation 'com.github.douglasjunior:AndroidBluetoothLibrary:0.3.5'
 }

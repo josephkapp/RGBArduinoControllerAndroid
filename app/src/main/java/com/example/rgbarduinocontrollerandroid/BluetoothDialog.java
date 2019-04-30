@@ -1,3 +1,7 @@
+/*******************************************************************************************************
+ * THIS CLASS IS CURRENTLY NOT BEING USED
+ *******************************************************************************************************/
+
 package com.example.rgbarduinocontrollerandroid;
 
 import android.app.AlertDialog;

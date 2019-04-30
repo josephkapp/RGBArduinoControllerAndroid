@@ -9,40 +9,42 @@
     tools:showIn="@layout/activity_main">
 
     <com.example.rgbarduinocontrollerandroid.PaintSeekBar
-        android:id="@+id/seekBar3"
+        android:id="@+id/blueSeekBar"
         android:layout_width="281dp"
         android:layout_height="33dp"
         android:layout_marginTop="20dp"
         android:max="255"
-        android:progress="1"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
+        app:layout_constraintTop_toBottomOf="@+id/greenSeekBar" />
 
     <com.example.rgbarduinocontrollerandroid.PaintSeekBar
-        android:id="@+id/seekBar4"
+        android:id="@+id/speedSeekBar"
         android:layout_width="275dp"
         android:layout_height="35dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:max="999"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar3" />
+        app:layout_constraintTop_toBottomOf="@+id/blueSeekBar" />
 
     <com.example.rgbarduinocontrollerandroid.PaintSeekBar
-        android:id="@+id/seekBar2"
+        android:id="@+id/greenSeekBar"
         android:layout_width="282dp"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
         android:max="255"
-        android:progress="1"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/redSeekBar" />
 
     <com.example.rgbarduinocontrollerandroid.PaintSeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/redSeekBar"
         android:layout_width="282dp"
         android:layout_height="36dp"
         android:layout_marginTop="68dp"
         android:max="255"
-        android:progress="1"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,11 +55,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
-        android:text="Red"
+        android:text="@string/red"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/seekBar"
+        app:layout_constraintEnd_toStartOf="@+id/redSeekBar"
         app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,11 +70,11 @@
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="Green"
+        android:text="@string/green"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/seekBar2"
+        app:layout_constraintEnd_toStartOf="@+id/greenSeekBar"
         app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -82,14 +84,14 @@
         android:layout_width="67dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Blue"
+        android:text="@string/blue"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/seekBar3"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/blueSeekBar"
+        app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -98,14 +100,14 @@
         android:layout_width="80dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
-        android:text="Speed"
+        android:text="@string/speed"
         android:textColor="@android:color/primary_text_light"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/seekBar4"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/speedSeekBar"
+        app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -116,7 +118,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        android:text="Turn Off"
+        android:onClick="onTurnOffButtonPress"
+        android:text="@string/turn_off"
         app:layout_constraintEnd_toStartOf="@+id/submitButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,8 +130,9 @@
         android:layout_width="147dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:text="Submit"
+        android:layout_marginEnd="32dp"
+        android:text="@string/submit"
+        android:onClick="onSubmitButtonPress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectAnimationButton" />
 
@@ -137,12 +141,12 @@
         android:layout_width="233dp"
         android:layout_height="54dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
         android:onClick="onSelectAnimationButtonPress"
-        android:text="Select Animation"
+        android:text="@string/select_animation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintHorizontal_bias="0.561"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/directionSwitch" />
 
@@ -154,13 +158,13 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:onClick="onConnectToBluetoothButtonPress"
-        android:text="Connect To Bluetooth"
+        android:text="@string/connect_to_bluetooth"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintHorizontal_bias="0.626"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/turnOffButton"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintVertical_bias="0.103" />
 
     <Switch
         android:id="@+id/directionSwitch"
@@ -170,12 +174,53 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:checked="false"
-        android:text="Animation Direction"
+        android:text="@string/reverse_animation"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar4" />
+        app:layout_constraintTop_toBottomOf="@+id/speedSeekBar" />
+
+    <TextView
+        android:id="@+id/selAnimationTextView"
+        android:layout_width="177dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connectBluetoothButton" />
+
+    <TextView
+        android:id="@+id/selAnimationTextView2"
+        android:layout_width="190dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:singleLine="true"
+        android:text="@string/selected_animation"
+        android:textAlignment="center"
+        android:textColor="#050505"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/selAnimationTextView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connectBluetoothButton" />
+
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="369dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selAnimationTextView" />
 
 </android.support.constraint.ConstraintLayout>

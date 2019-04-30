@@ -27,7 +27,7 @@ public class PaintSeekBar extends SeekBar {
         int thumb_x = (int) (( (double)this.getProgress()/this.getMax() ) * (double)this.getWidth());
         if(this.getProgress() < this.getMax()/4)
             thumb_x += 20;
-        else if(this.getProgress() > (this.getMax()/4)*3)
+        else if(this.getProgress() > (this.getMax()/4)*3) //Move the number to the left so it doesn't go offscreen, really hacky solution
             thumb_x -= 100;
 
         float middle = (float) (this.getHeight());
