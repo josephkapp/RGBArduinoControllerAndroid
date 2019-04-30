@@ -1,4 +1,4 @@
-/*
+<!--
     * Copyright (c) 2015, Nordic Semiconductor
     * All rights reserved.
     *
@@ -19,9 +19,10 @@
     * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
     * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     */
+    -->
 
 <resources>
-    <string name="app_name">RGB Arduino Controller Android</string>
+    <string name="app_name">RGB Arduino Controller</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_animation_selection">AnimationSelection</string>
     <string name="static_color">Static Color</string>
@@ -61,7 +62,7 @@
     <string name="ManufactureName">ManufactureName</string>
     <string name="RegCertDataList">RegCertDataList</string>
     <string name="BatteryLevel">    Battery Level</string>
-    <string name="popup_title">Quit nRF UART</string>
+    <string name="popup_title">Quit RGB Arduino Controller</string>
     <string name="popup_message">Do you want to quit this Application?</string>
     <string name="popup_yes">YES</string>
     <string name="popup_no">NO</string>

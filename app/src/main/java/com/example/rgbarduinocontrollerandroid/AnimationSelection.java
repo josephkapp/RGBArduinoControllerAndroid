@@ -11,7 +11,6 @@ import android.widget.RadioGroup;
 public class AnimationSelection extends AppCompatActivity {
 
     private RadioGroup radioAnimationGroup;
-    private RadioButton radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +33,9 @@ public class AnimationSelection extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
+        radioAnimationGroup = findViewById(R.id.radioGroup);
+        radioAnimationGroup.clearCheck();
 
     }
 

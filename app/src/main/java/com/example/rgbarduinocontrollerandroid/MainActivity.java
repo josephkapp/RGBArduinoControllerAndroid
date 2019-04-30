@@ -43,7 +43,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -57,23 +56,17 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_SELECT_DEVICE = 2;
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int SELECT_ANIMATION = 1;
-    private static final int UART_PROFILE_READY = 10;
     public static final String TAG = "RGB ARDUINO ANDROID";
     private static final int UART_PROFILE_CONNECTED = 20;
     private static final int UART_PROFILE_DISCONNECTED = 21;
-    private static final int STATE_OFF = 10;
 
-    TextView mRemoteRssiVal;
-    RadioGroup mRg;
     private int mState = UART_PROFILE_DISCONNECTED;
     private UartService mService = null;
     private BluetoothDevice mDevice = null;
     private BluetoothAdapter mBtAdapter = null;
-    //private ListView messageListView;
     private ArrayAdapter<String> listAdapter;
-    //private EditText edtMessage;
     private TextView statusMessage;
-    private String selAnimationText = "Off";
+    private String selAnimationText;
     private int selAnimationVal;
 
     @Override
@@ -83,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        PaintSeekBar seekBar = (PaintSeekBar) findViewById(R.id.redSeekBar);
+        PaintSeekBar seekBar = findViewById(R.id.redSeekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -107,7 +100,14 @@ public class MainActivity extends AppCompatActivity {
 
         listAdapter = new ArrayAdapter<String>(this, R.layout.message_detail);
         statusMessage = findViewById(R.id.statusTextView);
+
+        //Set start up defaults
         selAnimationVal = 0;
+        selAnimationText = "Static Color";
+        TextView textView = findViewById(R.id.selAnimationTextView);
+        textView.setText(selAnimationText);
+        findViewById(R.id.directionSwitch).setEnabled(false);
+        findViewById(R.id.speedSeekBar).setEnabled(false);
 
         service_init();
 
@@ -206,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
         int greenVal;
         int blueVal;
         int speedVal;
-        int animationVal;
 
         redVal = ((SeekBar) findViewById(R.id.redSeekBar)).getProgress();
         greenVal = ((SeekBar) findViewById(R.id.greenSeekBar)).getProgress();
@@ -252,9 +251,6 @@ public class MainActivity extends AppCompatActivity {
             mService.writeRXCharacteristic(value);
             //Update the log with time stamp
             String currentDateTimeString = DateFormat.getTimeInstance().format(new Date());
-            //listAdapter.add("["+currentDateTimeString+"] TX: "+ msg);
-            //messageListView.smoothScrollToPosition(listAdapter.getCount() - 1);
-            //edtMessage.setText("");
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -270,6 +266,72 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = findViewById(R.id.selAnimationTextView);
             textView.setText(selAnimationText);
 
+            switch (selAnimationVal){
+                case 0: //Static Color
+                {
+                    findViewById(R.id.redSeekBar).setEnabled(true);
+                    findViewById(R.id.greenSeekBar).setEnabled(true);
+                    findViewById(R.id.blueSeekBar).setEnabled(true);
+                    findViewById(R.id.speedSeekBar).setEnabled(false);
+                    findViewById(R.id.directionSwitch).setEnabled(false);
+                    break;
+                }
+                case 1: //Fade Color
+                {
+                    findViewById(R.id.redSeekBar).setEnabled(false);
+                    findViewById(R.id.greenSeekBar).setEnabled(false);
+                    findViewById(R.id.blueSeekBar).setEnabled(false);
+                    findViewById(R.id.speedSeekBar).setEnabled(true);
+                    findViewById(R.id.directionSwitch).setEnabled(false);
+                    break;
+                }
+                case 2: //Rainbow Cycle
+                {
+                    findViewById(R.id.redSeekBar).setEnabled(false);
+                    findViewById(R.id.greenSeekBar).setEnabled(false);
+                    findViewById(R.id.blueSeekBar).setEnabled(false);
+                    findViewById(R.id.speedSeekBar).setEnabled(true);
+                    findViewById(R.id.directionSwitch).setEnabled(false);
+                    break;
+                }
+                case 3: //Rainbow Chase
+                {
+                    findViewById(R.id.redSeekBar).setEnabled(false);
+                    findViewById(R.id.greenSeekBar).setEnabled(false);
+                    findViewById(R.id.blueSeekBar).setEnabled(false);
+                    findViewById(R.id.speedSeekBar).setEnabled(true);
+                    findViewById(R.id.directionSwitch).setEnabled(true);
+                    break;
+                }
+                case 4: //Theater Chase
+                {
+                    findViewById(R.id.redSeekBar).setEnabled(true);
+                    findViewById(R.id.greenSeekBar).setEnabled(true);
+                    findViewById(R.id.blueSeekBar).setEnabled(true);
+                    findViewById(R.id.speedSeekBar).setEnabled(true);
+                    findViewById(R.id.directionSwitch).setEnabled(true);
+                    break;
+                }
+                case 5: //Random Color Chase
+                {
+                    findViewById(R.id.redSeekBar).setEnabled(false);
+                    findViewById(R.id.greenSeekBar).setEnabled(false);
+                    findViewById(R.id.blueSeekBar).setEnabled(false);
+                    findViewById(R.id.speedSeekBar).setEnabled(true);
+                    findViewById(R.id.directionSwitch).setEnabled(true);
+                    break;
+                }
+                case 6: //Aurora Glow
+                {
+                    findViewById(R.id.redSeekBar).setEnabled(false);
+                    findViewById(R.id.greenSeekBar).setEnabled(false);
+                    findViewById(R.id.blueSeekBar).setEnabled(false);
+                    findViewById(R.id.speedSeekBar).setEnabled(true);
+                    findViewById(R.id.directionSwitch).setEnabled(false);
+                    break;
+                }
+            }
+
         } else if (resultCode == RESULT_OK && requestCode == REQUEST_SELECT_DEVICE)
         {
 
@@ -280,7 +342,6 @@ public class MainActivity extends AppCompatActivity {
             mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(deviceAddress);
 
             Log.d(TAG, "... onActivityResultdevice.address==" + mDevice + "mserviceValue" + mService);
-            //((TextView) findViewById(R.id.deviceName)).setText(mDevice.getName()+ " - connecting");
             boolean success = mService.connect(deviceAddress);
 
             if(success)
@@ -318,12 +379,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         String currentDateTimeString = DateFormat.getTimeInstance().format(new Date());
                         Log.d(TAG, "UART_CONNECT_MSG");
-                       // btnConnectDisconnect.setText("Disconnect");
-                        //edtMessage.setEnabled(true);
-                        //btnSend.setEnabled(true);
-                        //(TextView) findViewById(R.id.deviceName)).setText(mDevice.getName()+ " - ready");
                         listAdapter.add("["+currentDateTimeString+"] Connected to: "+ mDevice.getName());
-                        //messageListView.smoothScrollToPosition(listAdapter.getCount() - 1);
                         mState = UART_PROFILE_CONNECTED;
                     }
                 });
@@ -335,15 +391,9 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         String currentDateTimeString = DateFormat.getTimeInstance().format(new Date());
                         Log.d(TAG, "UART_DISCONNECT_MSG");
-                        //btnConnectDisconnect.setText("Connect");
-                       // edtMessage.setEnabled(false);
-                        //btnSend.setEnabled(false);
-                        //(TextView) findViewById(R.id.deviceName)).setText("Not Connected");
                         listAdapter.add("["+currentDateTimeString+"] Disconnected to: "+ mDevice.getName());
                         mState = UART_PROFILE_DISCONNECTED;
                         mService.close();
-                        //setUiState();
-
                     }
                 });
             }
@@ -363,7 +413,6 @@ public class MainActivity extends AppCompatActivity {
                             String text = new String(txValue, "UTF-8");
                             String currentDateTimeString = DateFormat.getTimeInstance().format(new Date());
                             listAdapter.add("["+currentDateTimeString+"] RX: "+text);
-                            //messageListView.smoothScrollToPosition(listAdapter.getCount() - 1);
 
                         } catch (Exception e) {
                             Log.e(TAG, e.toString());
@@ -373,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
             }
             //*********************//
             if (action.equals(UartService.DEVICE_DOES_NOT_SUPPORT_UART)){
-                //showMessage("Device doesn't support UART. Disconnecting");
+                showMessage("Device doesn't support UART. Disconnecting");
                 mService.disconnect();
             }
 
